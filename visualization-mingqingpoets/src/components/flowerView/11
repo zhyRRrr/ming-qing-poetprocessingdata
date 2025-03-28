@@ -1,0 +1,156 @@
+<script setup>
+import { ref, computed } from 'vue'
+
+// 旋转点的函数
+const rotatePoint = (x, y, angle) => {
+  const radians = angle * (Math.PI / 180)
+  const xNew = x * Math.cos(radians) - y * Math.sin(radians)
+  const yNew = x * Math.sin(radians) + y * Math.cos(radians)
+  return { x: xNew, y: yNew }
+}
+
+const point1 = ref({ x: 2, y: 4 })
+const point1ControlRight = ref({ x: 5, y: 8 })
+const point2ControlLeft = ref({ x: 5, y: 12 })
+const point2 = ref({ x: 10, y: 12 })
+
+const point2ControlRight = ref({ x: 11, y: 12 })
+const point3ControlLeft = ref({ x: 12, y: 11 })
+const point3 = ref({ x: 12, y: 10 })
+
+const point3ControlRight = ref({ x: 12, y: 6 })
+const point4ControlLeft = ref({ x: 8, y: 5 })
+const point4 = ref({ x: 4, y: 2 })
+
+const point4ControlRight = ref({ x: 2.93, y: 0.915 })
+const point5ControlLeft = ref({ x: 3.069, y: 0.035 })
+
+const path = computed(() => {
+  let s = `M ${point1.value.x} ${point1.value.y}
+          C ${point1ControlRight.value.x} ${point1ControlRight.value.y} ${point2ControlLeft.value.x} ${point2ControlLeft.value.y} ${point2.value.x} ${point2.value.y}
+          C ${point2ControlRight.value.x} ${point2ControlRight.value.y} ${point3ControlLeft.value.x} ${point3ControlLeft.value.y} ${point3.value.x} ${point3.value.y}
+          C ${point3ControlRight.value.x} ${point3ControlRight.value.y} ${point4ControlLeft.value.x} ${point4ControlLeft.value.y} ${point4.value.x} ${point4.value.y}
+          C ${point4ControlRight.value.x} ${point4ControlRight.value.y} ${point5ControlLeft.value.x} ${point5ControlLeft.value.y} `
+  for (let i = 1; i <= 4; ++i) {
+    const rotate = -72 * i
+
+    const rotatedPoint1 = rotatePoint(point1.value.x, point1.value.y, rotate)
+    const rotatedPoint1ControlRight = rotatePoint(
+      point1ControlRight.value.x,
+      point1ControlRight.value.y,
+      rotate
+    )
+    const rotatedPoint2ControlLeft = rotatePoint(
+      point2ControlLeft.value.x,
+      point2ControlLeft.value.y,
+      rotate
+    )
+    const rotatedPoint2 = rotatePoint(point2.value.x, point2.value.y, rotate)
+
+    const rotatedPoint2ControlRight = rotatePoint(
+      point2ControlRight.value.x,
+      point2ControlRight.value.y,
+      rotate
+    )
+    const rotatedPoint3ControlLeft = rotatePoint(
+      point3ControlLeft.value.x,
+      point3ControlLeft.value.y,
+      rotate
+    )
+    const rotatedPoint3 = rotatePoint(point3.value.x, point3.value.y, rotate)
+
+    const rotatedPoint3ControlRight = rotatePoint(
+      point3ControlRight.value.x,
+      point3ControlRight.value.y,
+      rotate
+    )
+    const rotatedPoint4ControlLeft = rotatePoint(
+      point4ControlLeft.value.x,
+      point4ControlLeft.value.y,
+      rotate
+    )
+    const rotatedPoint4 = rotatePoint(point4.value.x, point4.value.y, rotate)
+
+    const rotatedPoint4ControlRight = rotatePoint(
+      point4ControlRight.value.x,
+      point4ControlRight.value.y,
+      rotate
+    )
+    const rotatedPoint5ControlLeft = rotatePoint(
+      point5ControlLeft.value.x,
+      point5ControlLeft.value.y,
+      rotate
+    )
+
+    s += `${rotatedPoint1.x} ${rotatedPoint1.y}
+          C ${rotatedPoint1ControlRight.x} ${rotatedPoint1ControlRight.y} ${rotatedPoint2ControlLeft.x} ${rotatedPoint2ControlLeft.y} ${rotatedPoint2.x} ${rotatedPoint2.y}
+          C ${rotatedPoint2ControlRight.x} ${rotatedPoint2ControlRight.y} ${rotatedPoint3ControlLeft.x} ${rotatedPoint3ControlLeft.y} ${rotatedPoint3.x} ${rotatedPoint3.y}
+          C ${rotatedPoint3ControlRight.x} ${rotatedPoint3ControlRight.y} ${rotatedPoint4ControlLeft.x} ${rotatedPoint4ControlLeft.y} ${rotatedPoint4.x} ${rotatedPoint4.y}
+          C ${rotatedPoint4ControlRight.x} ${rotatedPoint4ControlRight.y} ${rotatedPoint5ControlLeft.x} ${rotatedPoint5ControlLeft.y} `
+  }
+  s += `${point1.value.x} ${point1.value.y}`
+
+  return s
+})
+</script>
+
+<template>
+  <!--  style="border:1px black solid"-->
+  <svg width="100" height="100" viewBox="0 0 100 100" style="border: 1px black solid">
+    <g transform="translate(50, 50) rotate(20, 0, 0)">
+      <path
+        d="M 0,0
+           C 20,20 20,43 0,50
+           C -20,43 -20,20 0,0"
+        fill="pink"
+        opacity="1"
+      />
+    </g>
+
+    <g transform="translate(50, 50) rotate(92, 0, 0)">
+      <path
+        d="M 0,0
+           C 20,20 20,43 0,50
+           C -20,43 -20,20 0,0"
+        fill="pink"
+        opacity="1"
+      />
+    </g>
+
+    <g transform="translate(50, 50) rotate(164, 0, 0)">
+      <path
+        d="M 0,0
+           C 20,20 20,43 0,50
+           C -20,43 -20,20 0,0"
+        fill="pink"
+        opacity="1"
+      />
+    </g>
+
+    <g transform="translate(50, 50) rotate(236, 0, 0)">
+      <path
+        d="M 0,0
+           C 20,20 20,43 0,50
+           C -20,43 -20,20 0,0"
+        fill="pink"
+        opacity="1"
+      />
+    </g>
+
+    <g transform="translate(50, 50) rotate(308, 0, 0)">
+      <path
+        d="M 0,0
+           C 20,20 20,43 0,50
+           C -20,43 -20,20 0,0"
+        fill="pink"
+        opacity="1"
+      />
+    </g>
+
+    <g transform="translate(50, 50) rotate(-10, 0, 0)">
+      <path :d="path" fill="white" />
+    </g>
+  </svg>
+</template>
+
+<style scoped></style>
